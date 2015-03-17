@@ -19,7 +19,7 @@ if not os.path.exists(DB_DIR):
 
 
 def abs_from_uri(uri):
-    uri = str(uri)
+    uri = str(uri).replace('%20', ' ')
     return '/' + uri.strip("file:/")
 
 
