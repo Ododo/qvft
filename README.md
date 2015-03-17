@@ -9,5 +9,7 @@ Free volatile file transfer program using right click menu as unique interface
 #Install Qvft for Debian/Gnome WM
 
   apt-get install python-nautilus python-requests python-easygui
+
   mkdir ~/.local/share/nautilus-python/ && cp qvft_nautilus.py ~/.local/share/nautilus-python/
+
   nautilus -q && nautilus
