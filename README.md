@@ -1,7 +1,7 @@
 # qvft
 Free volatile file transfer program using right click menu as unique interface
 
-    Qvft is at the moment only compatible with gnome environnement, clients for KDE, Mac & Windows are in development.
+    Qvft is at the moment only compatible with gnome environnement, clients for KDE & Windows are in development.
     Files hosted on Qvft are volatile , this mean that their life period is very short, once you have uploaded a file,
     your peers are supposed to retrieve those files rather quickly, Qvft is not a file hoster.
     
