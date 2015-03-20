@@ -108,6 +108,11 @@ class QvftExtension(GObject.GObject, Nautilus.MenuProvider,
     def refresh(self, menu):
         self.last_update_files = self.qvft_list_files()
 
+    def clear(self, menu):
+        self.db = {}
+        self.db_save()
+        self.refresh(None)
+
     def get_widget(self, uri, window):
         self.location = abs_from_uri(uri)
 
@@ -120,7 +125,6 @@ class QvftExtension(GObject.GObject, Nautilus.MenuProvider,
         submenu = Nautilus.Menu()
         top_menuitem.set_submenu(submenu)
 
-        #print(files[0].get_uri())
         paths = [abs_from_uri(f.get_uri()) for f in files]
         for name, key in self.db.iteritems():
             sub_menuitem = Nautilus.MenuItem(name='QvftMenu::%s' % name, 
@@ -157,10 +161,15 @@ class QvftExtension(GObject.GObject, Nautilus.MenuProvider,
                                          tip='',
                                          icon='')
 
+        item_clear = Nautilus.MenuItem(name='QvftMenu::Clear', 
+                                         label='Clear', 
+                                         tip='',
+                                         icon='')
 
         item_newkey.connect('activate', self.qvft_newkey)
         item_addkey.connect('activate', self.qvft_addkey)
         item_refresh.connect('activate', self.refresh)
+        item_clear.connect('activate', self.clear)
 
         for filename in self.last_update_files:
             if filename != '':
@@ -178,6 +187,7 @@ class QvftExtension(GObject.GObject, Nautilus.MenuProvider,
         submenu.append_item(item_newkey)
         submenu.append_item(item_addkey)
         submenu.append_item(item_refresh)
+        submenu.append_item(item_clear)
 
         menuitem = Nautilus.MenuItem(name='QvftMenu::Foo2', 
                                          label='Qvft', 
